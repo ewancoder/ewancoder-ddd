@@ -10,7 +10,7 @@
         {
             var streamId = Guid.NewGuid();
 
-            var sut = new TestDomainEvent(streamId);
+            var sut = new TestEvent(streamId);
 
             Assert.Equal(streamId, sut.StreamId);
         }
