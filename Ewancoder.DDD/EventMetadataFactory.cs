@@ -14,7 +14,7 @@
         /// <param name="event">Domain event.</param>
         /// <param name="streamId">Event stream id.</param>
         /// <returns>Changed domain event.</returns>
-        public static IDomainEvent SetMetadata(DomainEvent @event, Guid streamId)
+        public static IDomainEvent SetMetadata(this DomainEvent @event, Guid streamId)
         {
             @event.StreamId = streamId;
 

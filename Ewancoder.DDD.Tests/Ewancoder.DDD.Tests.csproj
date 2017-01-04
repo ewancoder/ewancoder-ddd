@@ -58,6 +58,7 @@
     <Compile Include="CommandDispatcherTests.cs" />
     <Compile Include="DomainEventTests.cs" />
     <Compile Include="EventDispatcherTests.cs" />
+    <Compile Include="EventMetadataFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestEventHandler.cs" />
     <Compile Include="TestEvent.cs" />
