@@ -59,6 +59,7 @@
     <Compile Include="DomainEventTests.cs" />
     <Compile Include="EventDispatcherTests.cs" />
     <Compile Include="EventMetadataFactoryTests.cs" />
+    <Compile Include="EventStreamTests.cs" />
     <Compile Include="ExceptionsTests.cs" />
     <Compile Include="FactoryExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
