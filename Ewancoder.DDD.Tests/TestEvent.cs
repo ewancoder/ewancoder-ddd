@@ -2,8 +2,9 @@
 {
     using System;
 
-    public sealed class TestEvent : DomainEvent
+    public class TestEvent : DomainEvent
     {
+        protected TestEvent() : base(Guid.Empty) { }
         public TestEvent(Guid streamId) : base(streamId)
         {
         }

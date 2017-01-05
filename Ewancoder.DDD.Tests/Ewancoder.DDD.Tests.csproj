@@ -60,6 +60,7 @@
     <Compile Include="EventDispatcherTests.cs" />
     <Compile Include="EventMetadataFactoryTests.cs" />
     <Compile Include="EventStreamTests.cs" />
+    <Compile Include="EventUpdaterTests.cs" />
     <Compile Include="ExceptionsTests.cs" />
     <Compile Include="FactoryExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
