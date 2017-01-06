@@ -11,6 +11,7 @@
         public bool RegisteredAppliers { get; private set; }
         public Guid TestId => Id;
         public int TestVersion => Version;
+        public string Prop { get; private set; }
 
         public void TestRegisterApplier<TDomainEvent>(Action<TDomainEvent> applier)
             where TDomainEvent : IDomainEvent
@@ -26,6 +27,13 @@
         protected override void RegisterAppliers()
         {
             RegisteredAppliers = true;
+
+            RegisterApplier<TestAppliedEvent>(Apply);
+        }
+
+        void Apply(TestAppliedEvent @event)
+        {
+            Prop = @event.Prop;
         }
     }
 }
