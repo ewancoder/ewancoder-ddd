@@ -5,6 +5,42 @@
     using Exceptions;
     using Interfaces;
 
+    public sealed class QueryDispatcherTests
+    {
+        private readonly Mock<IQueryHandlerFactory> _queryHandlerFactory
+            = new Mock<IQueryHandlerFactory>();
+
+        private readonly QueryDispatcher _sut;
+
+        public QueryDispatcherTests()
+        {
+            _sut = new QueryDispatcher(_queryHandlerFactory.Object);
+        }
+
+        [Fact]
+        public void ShouldThrowIfQueryHandlerNotFound()
+        {
+            Assert.Throws<UnregisteredQueryHandlerException>(
+                () => _sut.Dispatch<TestQuery<object>, object>(
+                    new TestQuery<object>()));
+        }
+
+        [Fact]
+        public void ShouldHandleQuery()
+        {
+            var testQuery = new TestQuery<object>();
+            object value = new object();
+            var testQueryHandler = new Mock<IQueryHandler<TestQuery<object>, object>>();
+            testQueryHandler.Setup(h => h.Handle(testQuery))
+                .Returns(value);
+            _queryHandlerFactory.Setup(f => f.Resolve<TestQuery<object>, object>())
+                .Returns(testQueryHandler.Object);
+
+            var result =_sut.Dispatch<TestQuery<object>, object>(testQuery);
+            Assert.Equal(value, result);
+        }
+    }
+
     public sealed class CommandDispatcherTests
     {
         private readonly Mock<ICommandHandlerFactory> _commandHandlerFactory
