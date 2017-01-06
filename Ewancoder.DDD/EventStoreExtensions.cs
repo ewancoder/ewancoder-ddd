@@ -59,6 +59,9 @@
 
                 stream.LoadFromHistory(events);
 
+                if (lastProcessed == stream.StreamVersion)
+                    throw new UnableToGetEventsForStreamException(stream);
+
                 lastProcessed = stream.StreamVersion;
             }
         }
