@@ -43,5 +43,14 @@
 
             Assert.Equal(query, e.Query);
         }
+
+        [Fact]
+        public void UnableToGetEventsForStreamException()
+        {
+            var stream = new TestEventStream();
+            var e = new UnableToGetEventsForStreamException(stream);
+
+            Assert.Equal(stream, e.EventStream);
+        }
     }
 }

@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="EventMetadataFactory.cs" />
     <Compile Include="EventUpdater.cs" />
+    <Compile Include="Exceptions\UnableToGetEventsForStreamException.cs" />
     <Compile Include="Interfaces\IDomainEvent.cs" />
     <Compile Include="Interfaces\ISnapshotIdentifierFactory.cs" />
     <Compile Include="Interfaces\IEventIdentifierFactory.cs" />
