@@ -45,6 +45,5 @@
         /// <param name="events">Events to be persisted.</param>
         /// <param name="expectedVersion">Expected last persisted version.</param>
         void Save(Guid streamId, IEnumerable<IDomainEvent> events, int expectedVersion);
-        void Save(Guid empty, bool v1, int v2);
     }
 }

@@ -26,6 +26,7 @@
         /// </summary>
         /// <typeparam name="TEvent">Domain event type that needs to be
         /// identified.</typeparam>
+        /// <param name="factory">Event identifier factory.</param>
         /// <returns>Event identifier.</returns>
         public static string GetIdentifier<TEvent>(
             this IEventIdentifierFactory factory)

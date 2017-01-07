@@ -26,6 +26,7 @@
         /// </summary>
         /// <typeparam name="TSnapshot">Event stream snapshot type that needs
         /// to be identified.</typeparam>
+        /// <param name="factory">Snapshot identifier factory.</param>
         /// <returns>Snapshot identifier.</returns>
         public static string GetIdentifier<TSnapshot>(
             this ISnapshotIdentifierFactory factory)
