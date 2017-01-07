@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Threading;
     using Exceptions;
     using Interfaces;
 
@@ -72,18 +71,17 @@
         /// <param name="eventStore">Event store.</param>
         /// <param name="stream">Event stream with uncommitted events.</param>
         /// <param name="dispatcher">Event dispatcher.</param>
-        internal static void SaveAndDispatch(this IEventStore eventStore, EventStream stream, IEventDispatcher dispatcher)
+        internal static void SaveAndDispatch(
+            this IEventStore eventStore,
+            EventStream stream,
+            IOrderedEventDispatcher dispatcher)
         {
             var changes = stream.GetUncommittedChanges().ToList(); // Make copy for dispatching.
             eventStore.Save(stream.StreamId, changes, stream.StreamVersion);
             stream.CommitChanges();
 
             // After persistence success.
-            ThreadPool.QueueUserWorkItem(_ =>
-            {
-                foreach (var @event in changes)
-                    dispatcher.Dispatch((dynamic)@event);
-            });
+            dispatcher.Dispatch(changes);
         }
     }
 }

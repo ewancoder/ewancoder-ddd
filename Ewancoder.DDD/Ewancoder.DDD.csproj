@@ -35,6 +35,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncOrderedEventDispatcher.cs" />
     <Compile Include="EventMetadataFactory.cs" />
     <Compile Include="EventUpdater.cs" />
     <Compile Include="Exceptions\UnableToGetEventsForStreamException.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="Interfaces\ISnapshotFactory.cs" />
     <Compile Include="EventStoreExtensions.cs" />
     <Compile Include="Interfaces\ISnapshotStore.cs" />
+    <Compile Include="Interfaces\IOrderedEventDispatcher.cs" />
     <Compile Include="Repository[TEventStream].cs" />
     <Compile Include="QueryDispatcher.cs" />
     <Compile Include="CommandDispatcher.cs" />

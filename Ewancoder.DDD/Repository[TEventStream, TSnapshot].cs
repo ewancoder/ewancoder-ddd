@@ -18,7 +18,7 @@
         /// <summary>
         /// Used to dispatch persisted events throughout the system.
         /// </summary>
-        private readonly IEventDispatcher _dispatcher;
+        private readonly IOrderedEventDispatcher _dispatcher;
 
         /// <summary>
         /// Used to persist new events from events stream and to get related events.
@@ -57,7 +57,7 @@
         /// <param name="snapshotPeriod">Number of persisted events needed to
         /// make next snapshot.</param>
         public Repository(
-            IEventDispatcher dispatcher,
+            IOrderedEventDispatcher dispatcher,
             IEventStore eventStore,
             int readPageSize,
             ISnapshotFactory<TEventStream, TSnapshot> snapshotFactory,

@@ -7,10 +7,11 @@
     using Xunit;
     using Exceptions;
     using Interfaces;
+    using System.Linq;
 
     public sealed class RepositoryTests
     {
-        private readonly Mock<IEventDispatcher> _dispatcher;
+        private readonly Mock<IOrderedEventDispatcher> _dispatcher;
         private readonly Mock<IEventStore> _eventStore;
         private readonly Repository<TestEventStream> _sut;
         private readonly Repository<TestEventStream, TestSnapshot> _sutWithSnapshots;
@@ -19,7 +20,7 @@
 
         public RepositoryTests()
         {
-            _dispatcher = new Mock<IEventDispatcher>();
+            _dispatcher = new Mock<IOrderedEventDispatcher>();
             _eventStore = new Mock<IEventStore>();
             _sut = new Repository<TestEventStream>(
                 _dispatcher.Object,
@@ -135,6 +136,10 @@
             stream.TestApplyChange(e3);
             Assert.Equal("prop3", stream.Prop);
 
+            List<IDomainEvent> events = null;
+            _dispatcher.Setup(d => d.Dispatch(It.IsAny<IEnumerable<IDomainEvent>>()))
+                .Callback<IEnumerable<IDomainEvent>>(e => events = e.ToList());
+
             var saved = false;
             _eventStore.Setup(s => s.Save(Guid.Empty, It.IsAny<IEnumerable<IDomainEvent>>(), -1))
                 .Callback(() => saved = true);
@@ -142,10 +147,9 @@
             Assert.True(saved);
             Assert.Equal(2, stream.TestVersion);
 
-            Thread.Sleep(1000);
-            _dispatcher.Verify(d => d.Dispatch(e1));
-            _dispatcher.Verify(d => d.Dispatch(e2));
-            _dispatcher.Verify(d => d.Dispatch(e3));
+            Assert.Equal(e1, events[0]);
+            Assert.Equal(e2, events[1]);
+            Assert.Equal(e3, events[2]);
         }
 
         [Fact]
@@ -161,6 +165,10 @@
             stream.TestApplyChange(e3);
             Assert.Equal("prop3", stream.Prop);
 
+            List<IDomainEvent> events = null;
+            _dispatcher.Setup(d => d.Dispatch(It.IsAny<IEnumerable<IDomainEvent>>()))
+                .Callback<IEnumerable<IDomainEvent>>(e => events = e.ToList());
+
             var saved = false;
             _eventStore.Setup(s => s.Save(Guid.Empty, It.IsAny<IEnumerable<IDomainEvent>>(), -1))
                 .Callback(() => saved = true);
@@ -168,10 +176,9 @@
             Assert.True(saved);
             Assert.Equal(2, stream.TestVersion);
 
-            Thread.Sleep(1000);
-            _dispatcher.Verify(d => d.Dispatch(e1));
-            _dispatcher.Verify(d => d.Dispatch(e2));
-            _dispatcher.Verify(d => d.Dispatch(e3));
+            Assert.Equal(e1, events[0]);
+            Assert.Equal(e2, events[1]);
+            Assert.Equal(e3, events[2]);
         }
     }
 }

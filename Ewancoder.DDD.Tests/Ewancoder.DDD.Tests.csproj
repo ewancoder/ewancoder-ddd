@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncOrderedEventDispatcherTests.cs" />
     <Compile Include="CommandDispatcherTests.cs" />
     <Compile Include="DomainEventTests.cs" />
     <Compile Include="EventDispatcherTests.cs" />

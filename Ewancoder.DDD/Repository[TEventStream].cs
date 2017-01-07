@@ -15,7 +15,7 @@
         /// <summary>
         /// Used to dispatch persisted events throughout the system.
         /// </summary>
-        private readonly IEventDispatcher _dispatcher;
+        private readonly IOrderedEventDispatcher _dispatcher;
 
         /// <summary>
         /// Used to persists new events from event stream and to get related events.
@@ -36,7 +36,7 @@
         /// <param name="readPageSize">Number of events to read per one event
         /// store query.</param>
         public Repository(
-            IEventDispatcher dispatcher,
+            IOrderedEventDispatcher dispatcher,
             IEventStore eventStore,
             int readPageSize)
         {
