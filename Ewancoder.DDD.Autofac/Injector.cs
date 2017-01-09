@@ -68,6 +68,10 @@
             builder.RegisterType<QueryDispatcher>()
                 .As<IQueryDispatcher>();
 
+            // Default ordered event dispatcher.
+            builder.RegisterType<AsyncOrderedEventDispatcher>()
+                .As<IOrderedEventDispatcher>();
+
             // Event updater.
             builder.RegisterType<EventUpdater>()
                 .As<IEventUpdater>();
