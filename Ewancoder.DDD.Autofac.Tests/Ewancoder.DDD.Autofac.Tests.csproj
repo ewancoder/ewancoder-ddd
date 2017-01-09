@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="EventConverterFactoryTests.cs" />
     <Compile Include="CommandHandlerFactoryTests.cs" />
+    <Compile Include="EventHandlerFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

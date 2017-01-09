@@ -3,7 +3,7 @@
     using System;
     using global::Autofac;
     using Xunit;
-    using Ewancoder.DDD.Interfaces;
+    using Interfaces;
 
     public sealed class EventConverterFactoryTests
     {
