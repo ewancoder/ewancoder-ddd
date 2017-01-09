@@ -32,6 +32,13 @@
         }
 
         [Fact]
+        public void ShouldThrowNullReferenceIfWronglyRegisteredNull()
+        {
+            var exception = Assert.Throws<ArgumentNullException>(
+                () => _sut.TestRegisterApplier<TestEvent>(null));
+        }
+
+        [Fact]
         public void ShouldHaveDefaultVersionNegativeOne()
         {
             Assert.Equal(-1, _sut.TestVersion);
@@ -72,6 +79,18 @@
 
             Assert.Equal(id, sut.TestId);
             Assert.Equal(version, sut.TestVersion);
+        }
+
+        [Fact]
+        public void ShouldSetIdAndVersion()
+        {
+            var sut = new TestEventStream();
+            var id = Guid.NewGuid();
+            sut.TestId = id;
+            sut.TestVersion = 123;
+
+            Assert.Equal(id, sut.TestId);
+            Assert.Equal(123, sut.TestVersion);
         }
     }
 }

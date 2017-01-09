@@ -9,8 +9,16 @@
         public TestEventStream(IEventStreamSnapshot snapshot) : base(snapshot) { }
 
         public bool RegisteredAppliers { get; private set; }
-        public Guid TestId => Id;
-        public int TestVersion => Version;
+        public Guid TestId
+        {
+            get => Id;
+            set => Id = value;
+        }
+        public int TestVersion
+        {
+            get => Version;
+            set => Version = value;
+        }
         public string Prop { get; private set; }
 
         public void TestRegisterApplier<TDomainEvent>(Action<TDomainEvent> applier)
