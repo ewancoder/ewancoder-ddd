@@ -101,7 +101,7 @@
 
             var snapshot = _snapshotStore.GetByStreamId(stream.StreamId);
 
-            if ((Equals(snapshot, default(TSnapshot)) && stream.StreamVersion >= _snapshotPeriod)
+            if ((Equals(snapshot, default(TSnapshot)) && stream.StreamVersion >= _snapshotPeriod - 1) // Stream versioning begin with 0.
                 || (!Equals(snapshot, default(TSnapshot)) && stream.StreamVersion - snapshot.Version >= _snapshotPeriod))
             {
                 _snapshotStore.Save(_snapshotFactory.TakeSnapshot(stream));

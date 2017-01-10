@@ -124,6 +124,25 @@
         }
 
         [Fact]
+        public void ShouldGetSnapshotIfExists()
+        {
+            var id = Guid.NewGuid();
+            _eventStore.Setup(s => s.GetLastStreamVersion(id)).Returns(4);
+            var snapshot = new TestSnapshot();
+            _snapshotStore.Setup(s => s.GetByStreamId(id))
+                .Returns(snapshot);
+            _eventStore.Setup(s => s.GetEventsForStream(id, 4, 2))
+                .Returns(new IDomainEvent[]
+                {
+                    new TestAppliedEvent("prop5")
+                });
+            _snapshotFactory.Setup(f => f.RestoreSnapshot(snapshot))
+                .Returns(new TestEventStream { TestVersion = 3 });
+
+            Assert.Equal("prop5", _sutWithSnapshots.GetById(id).Prop);
+        }
+
+        [Fact]
         public void ShouldSave()
         {
             var stream = new TestEventStream();
@@ -179,6 +198,83 @@
             Assert.Equal(e1, events[0]);
             Assert.Equal(e2, events[1]);
             Assert.Equal(e3, events[2]);
+        }
+
+        [Fact]
+        public void ShouldNotSaveSnapshotIfLessEventsOccurred()
+        {
+            var stream = new TestEventStream();
+            var e1 = new TestAppliedEvent("prop1");
+            stream.TestApplyChange(e1);
+            stream.TestApplyChange(e1);
+
+            var snapshot = new TestSnapshot();
+            _snapshotFactory.Setup(f => f.TakeSnapshot(stream))
+                .Returns(snapshot);
+            var saved = false;
+            _snapshotStore.Setup(s => s.Save(snapshot))
+                .Callback(() => saved = true);
+
+            _sutWithSnapshots.Save(stream);
+
+            Assert.False(saved);
+        }
+
+        [Fact]
+        public void ShouldSaveSnapshotIfMoreEventsOccurred()
+        {
+            var stream = new TestEventStream();
+            var e1 = new TestAppliedEvent("prop1");
+            stream.TestApplyChange(e1);
+            stream.TestApplyChange(e1);
+            stream.TestApplyChange(e1); // 3 times.
+
+            var snapshot = new TestSnapshot();
+            _snapshotFactory.Setup(f => f.TakeSnapshot(stream))
+                .Returns(snapshot);
+            var saved = false;
+            _snapshotStore.Setup(s => s.Save(snapshot))
+                .Callback(() => saved = true);
+
+            _sutWithSnapshots.Save(stream);
+
+            Assert.True(saved);
+        }
+
+        [Fact]
+        public void ShouldNotSaveSnapshotWhenAnotherSnapshotAlreadyMade()
+        {
+            var stream = new TestEventStream { TestVersion = 4 };
+            var snapshot = new TestSnapshot { Version = 2 };
+
+            _snapshotStore.Setup(s => s.GetByStreamId(stream.TestId))
+                .Returns(snapshot);
+
+            var saved = false;
+            _snapshotStore.Setup(s => s.Save(snapshot))
+                .Callback(() => saved = true);
+
+            _sutWithSnapshots.Save(stream);
+            Assert.False(saved);
+        }
+
+        [Fact]
+        public void ShouldSaveSnapshotWhenAnotherSnapshotAlreadyMadeAndVersionIsBigger()
+        {
+            var stream = new TestEventStream { TestVersion = 5 };
+            var snapshot = new TestSnapshot { Version = 2 };
+
+            _snapshotFactory.Setup(f => f.TakeSnapshot(stream))
+                .Returns(snapshot);
+            _snapshotStore.Setup(s => s.GetByStreamId(stream.TestId))
+                .Returns(snapshot);
+
+            var saved = false;
+            _snapshotStore.Setup(s => s.Save(snapshot))
+                .Callback(() => saved = true);
+
+            _sutWithSnapshots.Save(stream);
+            Assert.True(saved);
         }
     }
 }
