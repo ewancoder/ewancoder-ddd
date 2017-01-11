@@ -17,7 +17,7 @@
         TSnapshot GetByStreamId(Guid streamId);
 
         /// <summary>
-        /// Persists (saves) event stream snapshot.
+        /// Persists event stream snapshot.
         /// </summary>
         /// <param name="snapshot">Event stream snapshot.</param>
         void Save(TSnapshot snapshot);

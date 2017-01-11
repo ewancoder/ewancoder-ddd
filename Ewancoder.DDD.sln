@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ewancoder.DDD.Autofac", "Ew
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ewancoder.DDD.Autofac.Tests", "Ewancoder.DDD.Autofac.Tests\Ewancoder.DDD.Autofac.Tests.csproj", "{C5392485-560B-4BB9-9C2B-83706B7D5A26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ewancoder.DDD.EFEventStore", "Ewancoder.DDD.EFEventStore\Ewancoder.DDD.EFEventStore.csproj", "{04DD5B36-C9F7-466F-A00C-080042C3020E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C5392485-560B-4BB9-9C2B-83706B7D5A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5392485-560B-4BB9-9C2B-83706B7D5A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5392485-560B-4BB9-9C2B-83706B7D5A26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04DD5B36-C9F7-466F-A00C-080042C3020E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04DD5B36-C9F7-466F-A00C-080042C3020E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04DD5B36-C9F7-466F-A00C-080042C3020E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04DD5B36-C9F7-466F-A00C-080042C3020E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
