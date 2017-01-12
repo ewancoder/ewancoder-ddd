@@ -61,6 +61,18 @@
         }
 
         [Fact]
+        public void ShouldGetEventIdentifierByInterface()
+        {
+            var factory = new Mock<IEventIdentifierFactory>();
+            var result = "some string";
+            factory.Setup(f => f.GetIdentifier(typeof(TestEvent)))
+                .Returns(result);
+
+            IDomainEvent @event = new TestEvent(Guid.Empty);
+            Assert.Equal(result, factory.Object.GetIdentifier(@event));
+        }
+
+        [Fact]
         public void ShouldGetSnapshotIdentifier()
         {
             var factory = new Mock<ISnapshotIdentifierFactory>();
@@ -70,6 +82,18 @@
 
             Assert.Equal(result, factory.Object.GetIdentifier<TestSnapshot>());
             Assert.Equal(result, factory.Object.GetIdentifier(new TestSnapshot()));
+        }
+
+        [Fact]
+        public void ShouldGetSnapshotIdentifierByInterface()
+        {
+            var factory = new Mock<ISnapshotIdentifierFactory>();
+            var result = "some string";
+            factory.Setup(f => f.GetIdentifier(typeof(TestSnapshot)))
+                .Returns(result);
+
+            IEventStreamSnapshot snapshot = new TestSnapshot();
+            Assert.Equal(result, factory.Object.GetIdentifier(snapshot));
         }
     }
 }
