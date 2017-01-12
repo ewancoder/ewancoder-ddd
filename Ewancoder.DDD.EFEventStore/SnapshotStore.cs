@@ -102,7 +102,7 @@
             {
                 StreamId = snapshot.Id,
                 StreamVersion = snapshot.Version,
-                SnapshotTypeIdentifier = _snapshotIdentifierFactory.GetIdentifier<TSnapshot>(),
+                SnapshotTypeIdentifier = _snapshotIdentifierFactory.GetIdentifier(snapshot),
                 SnapshotData = _serializer.Serialize(snapshot),
                 TimeStamp = DateTime.UtcNow
             };

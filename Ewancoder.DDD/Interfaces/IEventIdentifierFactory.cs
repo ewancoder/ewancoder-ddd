@@ -47,7 +47,7 @@
             this IEventIdentifierFactory factory, TEvent @event)
             where TEvent : IDomainEvent
         {
-            return factory.GetIdentifier<TEvent>();
+            return factory.GetIdentifier(@event.GetType());
         }
     }
 }

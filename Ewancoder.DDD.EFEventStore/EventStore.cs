@@ -183,7 +183,7 @@
             {
                 StreamId = @event.StreamId,
                 StreamVersion = version,
-                EventTypeIdentifier = _eventIdentifierFactory.GetIdentifier(@event.GetType()),
+                EventTypeIdentifier = _eventIdentifierFactory.GetIdentifier(@event),
                 EventData = _serializer.Serialize(@event),
                 TimeStamp = DateTime.UtcNow
             };

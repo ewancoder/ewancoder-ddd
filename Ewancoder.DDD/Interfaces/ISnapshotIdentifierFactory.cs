@@ -48,7 +48,7 @@
             this ISnapshotIdentifierFactory factory, TSnapshot snapshot)
             where TSnapshot : IEventStreamSnapshot
         {
-            return factory.GetIdentifier<TSnapshot>();
+            return factory.GetIdentifier(snapshot.GetType());
         }
     }
 }
