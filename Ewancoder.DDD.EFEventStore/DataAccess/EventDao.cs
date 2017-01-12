@@ -7,8 +7,6 @@
     [Table("event")]
     internal sealed class EventDao
     {
-        [Key]
-        [Index]
         [Column("id")]
         public long Id { get; set; }
 

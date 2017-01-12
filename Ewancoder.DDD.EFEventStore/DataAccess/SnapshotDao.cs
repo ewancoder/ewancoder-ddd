@@ -7,8 +7,6 @@
     [Table("snapshot")]
     internal sealed class SnapshotDao
     {
-        [Key]
-        [Index]
         [Column("id")]
         public long Id { get; set; }
 
