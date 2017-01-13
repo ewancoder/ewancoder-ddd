@@ -1,4 +1,4 @@
-﻿namespace Ewancoder.DDD.EFEventStore
+﻿namespace Ewancoder.DDD.EFEventStore.Exceptions
 {
     using System;
 

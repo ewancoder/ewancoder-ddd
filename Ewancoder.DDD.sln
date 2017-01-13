@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ewancoder.DDD.Autofac.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ewancoder.DDD.EFEventStore", "Ewancoder.DDD.EFEventStore\Ewancoder.DDD.EFEventStore.csproj", "{04DD5B36-C9F7-466F-A00C-080042C3020E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ewancoder.DDD.EFEventStore.Tests", "Ewancoder.DDD.EFEventStore.Tests\Ewancoder.DDD.EFEventStore.Tests.csproj", "{2152C8E8-6133-4391-AFD8-782DAF7B2907}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{86C9055D-618F-4C2F-BC6B-452E0F4335CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,8 +43,17 @@ Global
 		{04DD5B36-C9F7-466F-A00C-080042C3020E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04DD5B36-C9F7-466F-A00C-080042C3020E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04DD5B36-C9F7-466F-A00C-080042C3020E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2152C8E8-6133-4391-AFD8-782DAF7B2907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2152C8E8-6133-4391-AFD8-782DAF7B2907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2152C8E8-6133-4391-AFD8-782DAF7B2907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2152C8E8-6133-4391-AFD8-782DAF7B2907}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FC27CAE9-B863-4F9C-BFC3-7B5ED7F0CA73} = {86C9055D-618F-4C2F-BC6B-452E0F4335CA}
+		{C5392485-560B-4BB9-9C2B-83706B7D5A26} = {86C9055D-618F-4C2F-BC6B-452E0F4335CA}
+		{2152C8E8-6133-4391-AFD8-782DAF7B2907} = {86C9055D-618F-4C2F-BC6B-452E0F4335CA}
 	EndGlobalSection
 EndGlobal
