@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{363F6422-4CD1-44A2-921F-2941A2C22C65}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SampleApplication.ConsoleApp</RootNamespace>
+    <AssemblyName>SampleApplication.ConsoleApp</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ewancoder.DDD.Autofac\Ewancoder.DDD.Autofac.csproj">
+      <Project>{03FAD694-7276-4D0D-B0F9-7C9E59CBA71D}</Project>
+      <Name>Ewancoder.DDD.Autofac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ewancoder.DDD.EFEventStore.Autofac\Ewancoder.DDD.EFEventStore.Autofac.csproj">
+      <Project>{26c60810-711f-4983-8339-9b27cf75b3de}</Project>
+      <Name>Ewancoder.DDD.EFEventStore.Autofac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ewancoder.DDD.EFEventStore\Ewancoder.DDD.EFEventStore.csproj">
+      <Project>{04dd5b36-c9f7-466f-a00c-080042c3020e}</Project>
+      <Name>Ewancoder.DDD.EFEventStore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ewancoder.DDD\Ewancoder.DDD.csproj">
+      <Project>{A6C8AF94-E92B-4CA2-8AAE-8DBDA07429E5}</Project>
+      <Name>Ewancoder.DDD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SampleApplication.Domain\SampleApplication.Domain.csproj">
+      <Project>{79EFE7EA-3381-4922-8542-B949D0595E3C}</Project>
+      <Name>SampleApplication.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

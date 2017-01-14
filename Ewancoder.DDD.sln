@@ -19,6 +19,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{86C9055D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ewancoder.DDD.EFEventStore.Autofac", "Ewancoder.DDD.EFEventStore.Autofac\Ewancoder.DDD.EFEventStore.Autofac.csproj", "{26C60810-711F-4983-8339-9B27CF75B3DE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleApplication", "SampleApplication", "{AC37CB33-AC2E-4989-ABBF-9905463DB3CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication.ConsoleApp", "SampleApplication.ConsoleApp\SampleApplication.ConsoleApp.csproj", "{363F6422-4CD1-44A2-921F-2941A2C22C65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication.Domain", "SampleApplication.Domain\SampleApplication.Domain.csproj", "{79EFE7EA-3381-4922-8542-B949D0595E3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +59,14 @@ Global
 		{26C60810-711F-4983-8339-9B27CF75B3DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26C60810-711F-4983-8339-9B27CF75B3DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26C60810-711F-4983-8339-9B27CF75B3DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{363F6422-4CD1-44A2-921F-2941A2C22C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{363F6422-4CD1-44A2-921F-2941A2C22C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{363F6422-4CD1-44A2-921F-2941A2C22C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{363F6422-4CD1-44A2-921F-2941A2C22C65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79EFE7EA-3381-4922-8542-B949D0595E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79EFE7EA-3381-4922-8542-B949D0595E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79EFE7EA-3381-4922-8542-B949D0595E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79EFE7EA-3381-4922-8542-B949D0595E3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,5 +75,7 @@ Global
 		{FC27CAE9-B863-4F9C-BFC3-7B5ED7F0CA73} = {86C9055D-618F-4C2F-BC6B-452E0F4335CA}
 		{C5392485-560B-4BB9-9C2B-83706B7D5A26} = {86C9055D-618F-4C2F-BC6B-452E0F4335CA}
 		{2152C8E8-6133-4391-AFD8-782DAF7B2907} = {86C9055D-618F-4C2F-BC6B-452E0F4335CA}
+		{363F6422-4CD1-44A2-921F-2941A2C22C65} = {AC37CB33-AC2E-4989-ABBF-9905463DB3CA}
+		{79EFE7EA-3381-4922-8542-B949D0595E3C} = {AC37CB33-AC2E-4989-ABBF-9905463DB3CA}
 	EndGlobalSection
 EndGlobal
