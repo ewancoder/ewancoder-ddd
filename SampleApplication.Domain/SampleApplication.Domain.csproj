@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Notes\Commands\ArchiveNote.cs" />
+    <Compile Include="Notes\Commands\CreateNoteWithBody.cs" />
     <Compile Include="Notes\Commands\CreateNote.cs" />
     <Compile Include="Notes\Commands\UpdateNoteInformation.cs" />
     <Compile Include="Notes\Events\NoteArchived.cs" />

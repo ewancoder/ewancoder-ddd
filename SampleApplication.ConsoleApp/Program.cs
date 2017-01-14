@@ -71,6 +71,9 @@
 
                 var archiveCommand = new ArchiveNote(noteId);
                 dispatcher.Dispatch(archiveCommand); // Archives note.
+
+                var createWithBodyCommand = new CreateNoteWithBody(Guid.NewGuid(), "note with body", "body");
+                dispatcher.Dispatch(createWithBodyCommand); // Creates new Note with body.
             }
         }
 
