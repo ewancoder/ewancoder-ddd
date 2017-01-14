@@ -24,7 +24,7 @@
             builder.RegisterType<EventStore>()
                 .As<IEventStore>();
 
-            builder.RegisterType(typeof(SnapshotStore<>))
+            builder.RegisterGeneric(typeof(SnapshotStore<>))
                 .As(typeof(ISnapshotStore<>));
 
             return builder;

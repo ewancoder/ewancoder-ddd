@@ -135,6 +135,8 @@
                         streamId, expectedVersion, last);
                 }
 
+                var x = FromEvent(events.First(), expectedVersion + 1 + 0);
+
                 context.Events.AddRange(
                     events.Select((e, i) => FromEvent(e, expectedVersion + 1 + i)));
 

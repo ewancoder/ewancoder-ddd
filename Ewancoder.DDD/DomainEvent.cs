@@ -11,6 +11,13 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="DomainEvent"/> class.
         /// </summary>
+        protected DomainEvent()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DomainEvent"/> class.
+        /// </summary>
         /// <param name="streamId">Event stream identifier.</param>
         public DomainEvent(Guid streamId)
         {

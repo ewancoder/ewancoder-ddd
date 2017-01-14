@@ -18,8 +18,6 @@
         [Column("stream_version")]
         public int StreamVersion { get; set; }
 
-        [Index]
-        [MaxLength(64)]
         [Column("snapshot_type_identifier")]
         public string SnapshotTypeIdentifier { get; set; }
 

@@ -18,8 +18,6 @@
         [Column("stream_version")]
         public int StreamVersion { get; set; }
 
-        [Index]
-        [MaxLength(64)]
         [Column("event_type_identifier")]
         public string EventTypeIdentifier { get; set; }
 
