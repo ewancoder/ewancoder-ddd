@@ -57,15 +57,14 @@
     <Compile Include="DataAccess\SnapshotDao.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="SnapshotSerializer.cs" />
     <Compile Include="Exceptions\ExpectedVersionDoesNotMatchPersistedVersionException.cs" />
-    <Compile Include="Serializer.cs" />
+    <Compile Include="EventSerializer.cs" />
     <Compile Include="EventStore.cs" />
     <Compile Include="ISerializer.cs" />
-    <Compile Include="ITypeFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SnapshotMetadataFactory.cs" />
     <Compile Include="SnapshotStore.cs" />
-    <Compile Include="TypeFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ewancoder.DDD\Ewancoder.DDD.csproj">

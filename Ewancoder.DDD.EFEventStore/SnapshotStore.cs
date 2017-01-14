@@ -15,7 +15,7 @@
         /// <summary>
         /// Used to serialize and deserialize snapshot data.
         /// </summary>
-        private readonly ISerializer _serializer;
+        private readonly ISnapshotSerializer _serializer;
 
         /// <summary>
         /// Used to resolve snapshot type identifier.
@@ -28,7 +28,7 @@
         /// <param name="serializer">Data serializer.</param>
         /// <param name="snapshotIdentifierFactory">Snapshot identifier factory.</param>
         public SnapshotStore(
-            ISerializer serializer,
+            ISnapshotSerializer serializer,
             ISnapshotIdentifierFactory snapshotIdentifierFactory)
         {
             _serializer = serializer;

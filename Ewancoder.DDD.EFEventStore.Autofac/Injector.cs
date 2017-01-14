@@ -1,7 +1,5 @@
 ﻿namespace Ewancoder.DDD.EFEventStore.Autofac
 {
-    using System;
-    using System.Collections.Generic;
     using global::Autofac;
     using Interfaces;
 
@@ -15,20 +13,19 @@
         /// </summary>
         /// <param name="builder">Autofac container builder.</param>
         /// <returns>Autofac container builder with registered dependencies.</returns>
-        public static ContainerBuilder Setup(
-            ContainerBuilder builder,
-            IDictionary<string, Type> knownEventTypes,
-            IDictionary<string, Type> knownSnapshotTypes)
+        public static ContainerBuilder Setup(ContainerBuilder builder)
         {
-            builder.RegisterType<EventStore>()
-                .As<IEventStore>()
-                .WithParameter("serializer", new Serializer(
-                    new TypeFactory(knownEventTypes)));
+            builder.RegisterType<EventSerializer>()
+                .As<IEventSerializer>();
 
-            builder.RegisterGeneric(typeof(SnapshotStore<>))
-                .As(typeof(ISnapshotStore<>))
-                .WithParameter("serializer", new Serializer(
-                    new TypeFactory(knownSnapshotTypes)));
+            builder.RegisterType<SnapshotSerializer>()
+                .As<ISnapshotSerializer>();
+
+            builder.RegisterType<EventStore>()
+                .As<IEventStore>();
+
+            builder.RegisterType(typeof(SnapshotStore<>))
+                .As(typeof(ISnapshotStore<>));
 
             return builder;
         }

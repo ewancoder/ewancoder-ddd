@@ -14,6 +14,13 @@
         /// identified.</param>
         /// <returns>Event identifier.</returns>
         string GetIdentifier(Type eventType);
+
+        /// <summary>
+        /// Obtains event type for given domain event type identifier.
+        /// </summary>
+        /// <param name="eventTypeIdentifier">Domain event type identifier.</param>
+        /// <returns>Event type identifier.</returns>
+        Type ResolveType(string eventTypeIdentifier);
     }
 
     /// <summary>

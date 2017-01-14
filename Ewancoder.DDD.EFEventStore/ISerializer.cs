@@ -22,4 +22,14 @@
         /// <returns>Deserialized event or snapshot object.</returns>
         object Deserialize(string typeIdentifier, byte[] data);
     }
+
+    /// <summary>
+    /// Event serializer.
+    /// </summary>
+    public interface IEventSerializer : ISerializer { }
+
+    /// <summary>
+    /// Snapshot serializer.
+    /// </summary>
+    public interface ISnapshotSerializer : ISerializer { }
 }

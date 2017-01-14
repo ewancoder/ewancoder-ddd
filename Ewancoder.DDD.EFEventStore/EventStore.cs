@@ -18,7 +18,7 @@
         /// <summary>
         /// Used to serialize and deserialize event data.
         /// </summary>
-        private readonly ISerializer _serializer;
+        private readonly IEventSerializer _serializer;
 
         /// <summary>
         /// Used to update events to recent versions.
@@ -37,7 +37,7 @@
         /// <param name="updater">Event updater.</param>
         /// <param name="eventIdentifierFactory">Snapshot identifier factory.</param>
         public EventStore(
-            ISerializer serializer,
+            IEventSerializer serializer,
             IEventUpdater updater,
             IEventIdentifierFactory eventIdentifierFactory)
         {

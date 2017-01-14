@@ -59,7 +59,6 @@
     <Compile Include="ExceptionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializerTests.cs" />
-    <Compile Include="TypeFactoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -68,6 +67,10 @@
     <ProjectReference Include="..\Ewancoder.DDD.EFEventStore\Ewancoder.DDD.EFEventStore.csproj">
       <Project>{04dd5b36-c9f7-466f-a00c-080042c3020e}</Project>
       <Name>Ewancoder.DDD.EFEventStore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ewancoder.DDD\Ewancoder.DDD.csproj">
+      <Project>{A6C8AF94-E92B-4CA2-8AAE-8DBDA07429E5}</Project>
+      <Name>Ewancoder.DDD</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

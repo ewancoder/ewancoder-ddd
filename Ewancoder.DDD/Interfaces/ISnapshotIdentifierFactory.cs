@@ -14,6 +14,14 @@
         /// to be identified.</param>
         /// <returns>Event identifier.</returns>
         string GetIdentifier(Type snapshotType);
+
+        /// <summary>
+        /// Obtains snapshot type for given event stream snapshot type identifier.
+        /// </summary>
+        /// <param name="snapshotTypeIdentifier">Event stream snapshot type
+        /// identifier.</param>
+        /// <returns>Event stream snaphsot type identifier.</returns>
+        Type ResolveType(string snapshotTypeIdentifier);
     }
 
     /// <summary>
