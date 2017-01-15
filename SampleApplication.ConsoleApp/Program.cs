@@ -71,8 +71,8 @@
             var noteId = Guid.NewGuid();
             var secondNoteId = Guid.NewGuid();
 
+            // Sends some commands to the domain.
             {
-
                 var createCommand = new CreateNote(noteId, "some note name");
                 commandDispatcher.Dispatch(createCommand); // Creates new Note.
 
@@ -86,6 +86,7 @@
                 commandDispatcher.Dispatch(createWithBodyCommand); // Creates new Note with body.
             }
 
+            // Queries some read models from the domain.
             {
                 var notesQuery = new Notes();
                 var notes = queryDispatcher.Dispatch<Notes, IEnumerable<INote>>(notesQuery);
