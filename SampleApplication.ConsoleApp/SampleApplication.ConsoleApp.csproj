@@ -74,6 +74,10 @@
       <Project>{79EFE7EA-3381-4922-8542-B949D0595E3C}</Project>
       <Name>SampleApplication.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SampleApplication.ReadModel\SampleApplication.ReadModel.csproj">
+      <Project>{9B723E56-EEF0-4571-8656-E17FE30EC41E}</Project>
+      <Name>SampleApplication.ReadModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

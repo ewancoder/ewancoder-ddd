@@ -6,6 +6,8 @@
     using Ewancoder.DDD.Autofac;
     using Ewancoder.DDD.Interfaces;
     using Domain.Notes.Commands;
+    using SampleApplication.ReadModel.Notes;
+    using System.Collections.Generic;
 
     public class EventIdentifierFactory : IEventIdentifierFactory
     {
@@ -37,7 +39,8 @@
     {
         static void Main()
         {
-            ICommandDispatcher dispatcher;
+            ICommandDispatcher commandDispatcher;
+            IQueryDispatcher queryDispatcher;
 
             {
                 var builder = new ContainerBuilder();
@@ -55,33 +58,58 @@
                 builder.RegisterType<SnapshotIdentifierFactory>()
                     .As<ISnapshotIdentifierFactory>();
 
+                // Setup read models.
+                builder.RegisterType<NoteStore>()
+                    .AsSelf().SingleInstance(); // This is in-memory cache.
+
                 var container = builder.Build();
 
-                dispatcher = container.Resolve<ICommandDispatcher>();
+                commandDispatcher = container.Resolve<ICommandDispatcher>();
+                queryDispatcher = container.Resolve<IQueryDispatcher>();
+            }
+
+            var noteId = Guid.NewGuid();
+            var secondNoteId = Guid.NewGuid();
+
+            {
+
+                var createCommand = new CreateNote(noteId, "some note name");
+                commandDispatcher.Dispatch(createCommand); // Creates new Note.
+
+                var updateCommand = new UpdateNoteInformation(noteId, "another note name", "note body");
+                commandDispatcher.Dispatch(updateCommand); // Updates note information.
+
+                var archiveCommand = new ArchiveNote(noteId);
+                commandDispatcher.Dispatch(archiveCommand); // Archives note.
+
+                var createWithBodyCommand = new CreateNoteWithBody(secondNoteId, "note with body", "body");
+                commandDispatcher.Dispatch(createWithBodyCommand); // Creates new Note with body.
             }
 
             {
-                var noteId = Guid.NewGuid();
+                var notesQuery = new Notes();
+                var notes = queryDispatcher.Dispatch<Notes, IEnumerable<INote>>(notesQuery);
 
-                var createCommand = new CreateNote(noteId, "some note name");
-                dispatcher.Dispatch(createCommand); // Creates new Note.
+                foreach (var n in notes)
+                {
+                    Console.WriteLine(n.Id + " - " + n.Name + " - " + n.Body);
+                }
 
-                var updateCommand = new UpdateNoteInformation(noteId, "another note name", "note body");
-                dispatcher.Dispatch(updateCommand); // Updates note information.
+                var noteByIdQuery = new NoteById(secondNoteId);
+                var note = queryDispatcher.Dispatch<NoteById, INote>(noteByIdQuery);
 
-                var archiveCommand = new ArchiveNote(noteId);
-                dispatcher.Dispatch(archiveCommand); // Archives note.
-
-                var createWithBodyCommand = new CreateNoteWithBody(Guid.NewGuid(), "note with body", "body");
-                dispatcher.Dispatch(createWithBodyCommand); // Creates new Note with body.
+                Console.WriteLine("Single note with Id " + secondNoteId + " is " + note.Name);
             }
+
+            Console.ReadLine();
         }
 
         private static Assembly[] GetDomainAssemblies()
         {
             return new[]
             {
-                Assembly.LoadFrom("SampleApplication.Domain.dll")
+                Assembly.LoadFrom("SampleApplication.Domain.dll"),
+                Assembly.LoadFrom("SampleApplication.ReadModel.dll")
             };
         }
     }
