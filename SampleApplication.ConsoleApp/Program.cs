@@ -1,13 +1,14 @@
 ﻿namespace SampleApplication.ConsoleApp
 {
     using System;
+    using System.Collections.Generic;
     using System.Reflection;
     using Autofac;
+    using Ewancoder.DDD;
     using Ewancoder.DDD.Autofac;
     using Ewancoder.DDD.Interfaces;
     using Domain.Notes.Commands;
     using SampleApplication.ReadModel.Notes;
-    using System.Collections.Generic;
 
     public class EventIdentifierFactory : IEventIdentifierFactory
     {
@@ -61,6 +62,11 @@
                 // Setup read models.
                 builder.RegisterType<NoteStore>()
                     .AsSelf().SingleInstance(); // This is in-memory cache.
+
+                // Switch to synchronous event dispatching if you don't want
+                // to tackle with eventual consistency.
+                builder.RegisterType<SyncOrderedEventDispatcher>()
+                    .As<IOrderedEventDispatcher>();
 
                 var container = builder.Build();
 
