@@ -45,7 +45,9 @@
     <Compile Include="Notes\Events\NoteCreated.cs" />
     <Compile Include="Notes\Exceptions\NoteAlreadyArchivedException.cs" />
     <Compile Include="Notes\Handlers\NoteHandler.cs" />
+    <Compile Include="Notes\INoteState.cs" />
     <Compile Include="Notes\Note.cs" />
+    <Compile Include="Notes\NoteSnapshotFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

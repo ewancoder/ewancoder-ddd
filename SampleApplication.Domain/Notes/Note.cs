@@ -70,5 +70,28 @@
         {
             _body = @event.Body;
         }
+
+        #region Snapshot
+
+        private Note(INoteState state)
+        {
+            Id = state.Id;
+            Version = state.Version;
+            _isArchived = state.IsArchived;
+            _name = state.Name;
+            _body = state.Body;
+        }
+
+        internal static Note FromSnapshot(INoteState state)
+        {
+            return new Note(state);
+        }
+
+        internal INoteState TakeSnapshot()
+        {
+            return new NoteState(Id, Version, _isArchived, _name, _body);
+        }
+
+        #endregion
     }
 }

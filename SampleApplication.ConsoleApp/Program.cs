@@ -26,7 +26,7 @@
     {
         public string GetIdentifier(Type snapshotType)
         {
-            return snapshotType.Name;
+            return snapshotType.AssemblyQualifiedName;
         }
 
         public Type ResolveType(string snapshotTypeIdentifier)
@@ -46,7 +46,7 @@
                 var builder = new ContainerBuilder();
 
                 // Setup DDD injection.
-                Injector.Setup(builder, GetDomainAssemblies(), 10, 10);
+                Injector.Setup(builder, GetDomainAssemblies(), 10, 2);
 
                 // Setup EFEventStore injection.
                 Ewancoder.DDD.EFEventStore.Autofac.Injector.Setup(builder);
