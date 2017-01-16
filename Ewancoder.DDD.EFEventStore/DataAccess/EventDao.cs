@@ -19,6 +19,7 @@
         public int StreamVersion { get; set; }
 
         [Column("event_type_identifier")]
+        [Required]
         public string EventTypeIdentifier { get; set; }
 
         [Column("event_data")]

@@ -19,6 +19,7 @@
         public int StreamVersion { get; set; }
 
         [Column("snapshot_type_identifier")]
+        [Required]
         public string SnapshotTypeIdentifier { get; set; }
 
         [Column("snapshot_data")]
