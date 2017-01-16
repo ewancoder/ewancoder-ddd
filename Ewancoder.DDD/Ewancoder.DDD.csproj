@@ -35,6 +35,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SyncOrderedEventDispatcher.cs" />
     <Compile Include="AsyncOrderedEventDispatcher.cs" />
     <Compile Include="EventMetadataFactory.cs" />
     <Compile Include="EventUpdater.cs" />
