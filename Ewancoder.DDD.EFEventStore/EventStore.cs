@@ -5,8 +5,9 @@
     using System.Linq;
     using DataAccess;
     using DDD.Exceptions;
-    using Exceptions;
     using Interfaces;
+    using Services;
+    using Exceptions;
 
     /// <summary>
     /// Entity framework driven Event Store.
@@ -31,6 +32,11 @@
         private readonly IEventIdentifierFactory _eventIdentifierFactory;
 
         /// <summary>
+        /// Used to get current UTC time.
+        /// </summary>
+        private readonly ITimeService _time;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="EventStore"/> class.
         /// </summary>
         /// <param name="serializer">Data serializer.</param>
@@ -39,11 +45,13 @@
         public EventStore(
             IEventSerializer serializer,
             IEventUpdater updater,
-            IEventIdentifierFactory eventIdentifierFactory)
+            IEventIdentifierFactory eventIdentifierFactory,
+            ITimeService timeService)
         {
             _serializer = serializer;
             _updater = updater;
             _eventIdentifierFactory = eventIdentifierFactory;
+            _time = timeService;
         }
 
         /// <summary>
@@ -188,7 +196,7 @@
                 StreamVersion = version,
                 EventTypeIdentifier = _eventIdentifierFactory.GetIdentifier(@event),
                 EventData = _serializer.Serialize(@event),
-                TimeStamp = DateTime.UtcNow
+                TimeStamp = _time.GetUtcNow()
             };
         }
     }

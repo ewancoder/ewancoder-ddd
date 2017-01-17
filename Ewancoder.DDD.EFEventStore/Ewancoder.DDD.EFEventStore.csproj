@@ -68,6 +68,10 @@
     <Compile Include="SnapshotStore.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ewancoder.DDD.Services\Ewancoder.DDD.Services.csproj">
+      <Project>{020d8e53-22b0-4622-aec8-a7b6236ab59e}</Project>
+      <Name>Ewancoder.DDD.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ewancoder.DDD\Ewancoder.DDD.csproj">
       <Project>{a6c8af94-e92b-4ca2-8aae-8dbda07429e5}</Project>
       <Name>Ewancoder.DDD</Name>

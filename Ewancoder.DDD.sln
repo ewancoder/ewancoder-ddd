@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication.Domain", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication.ReadModel", "SampleApplication.ReadModel\SampleApplication.ReadModel.csproj", "{9B723E56-EEF0-4571-8656-E17FE30EC41E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ewancoder.DDD.Services", "Ewancoder.DDD.Services\Ewancoder.DDD.Services.csproj", "{020D8E53-22B0-4622-AEC8-A7B6236AB59E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{9B723E56-EEF0-4571-8656-E17FE30EC41E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B723E56-EEF0-4571-8656-E17FE30EC41E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B723E56-EEF0-4571-8656-E17FE30EC41E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{020D8E53-22B0-4622-AEC8-A7B6236AB59E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{020D8E53-22B0-4622-AEC8-A7B6236AB59E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{020D8E53-22B0-4622-AEC8-A7B6236AB59E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{020D8E53-22B0-4622-AEC8-A7B6236AB59E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

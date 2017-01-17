@@ -2,8 +2,9 @@
 {
     using System;
     using System.Linq;
-    using DataAccess;
     using Interfaces;
+    using Services;
+    using DataAccess;
 
     /// <summary>
     /// Entity framework driven Snapshot Store.
@@ -23,16 +24,23 @@
         private readonly ISnapshotIdentifierFactory _snapshotIdentifierFactory;
 
         /// <summary>
+        /// Used to get current UTC time.
+        /// </summary>
+        private readonly ITimeService _time;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SnapshotStore{TSnapshot}"/> class.
         /// </summary>
         /// <param name="serializer">Data serializer.</param>
         /// <param name="snapshotIdentifierFactory">Snapshot identifier factory.</param>
         public SnapshotStore(
             ISnapshotSerializer serializer,
-            ISnapshotIdentifierFactory snapshotIdentifierFactory)
+            ISnapshotIdentifierFactory snapshotIdentifierFactory,
+            ITimeService timeService)
         {
             _serializer = serializer;
             _snapshotIdentifierFactory = snapshotIdentifierFactory;
+            _time = timeService;
         }
 
         /// <summary>
@@ -104,7 +112,7 @@
                 StreamVersion = snapshot.Version,
                 SnapshotTypeIdentifier = _snapshotIdentifierFactory.GetIdentifier(snapshot),
                 SnapshotData = _serializer.Serialize(snapshot),
-                TimeStamp = DateTime.UtcNow
+                TimeStamp = _time.GetUtcNow()
             };
         }
     }

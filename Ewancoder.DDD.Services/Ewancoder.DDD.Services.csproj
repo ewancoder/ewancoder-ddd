@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{26C60810-711F-4983-8339-9B27CF75B3DE}</ProjectGuid>
+    <ProjectGuid>{020D8E53-22B0-4622-AEC8-A7B6236AB59E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ewancoder.DDD.EFEventStore.Autofac</RootNamespace>
-    <AssemblyName>Ewancoder.DDD.EFEventStore.Autofac</AssemblyName>
+    <RootNamespace>Ewancoder.DDD.Services</RootNamespace>
+    <AssemblyName>Ewancoder.DDD.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -28,35 +28,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Ewancoder.DDD.EFEventStore.Autofac.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Injector.cs" />
+    <Compile Include="DefaultTimeService.cs" />
+    <Compile Include="ITimeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Ewancoder.DDD.EFEventStore\Ewancoder.DDD.EFEventStore.csproj">
-      <Project>{04dd5b36-c9f7-466f-a00c-080042c3020e}</Project>
-      <Name>Ewancoder.DDD.EFEventStore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ewancoder.DDD.Services\Ewancoder.DDD.Services.csproj">
-      <Project>{020D8E53-22B0-4622-AEC8-A7B6236AB59E}</Project>
-      <Name>Ewancoder.DDD.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ewancoder.DDD\Ewancoder.DDD.csproj">
-      <Project>{a6c8af94-e92b-4ca2-8aae-8dbda07429e5}</Project>
-      <Name>Ewancoder.DDD</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

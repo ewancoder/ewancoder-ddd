@@ -2,6 +2,7 @@
 {
     using global::Autofac;
     using Interfaces;
+    using Services;
 
     /// <summary>
     /// Injects all dependencies into autofac container.
@@ -26,6 +27,9 @@
 
             builder.RegisterGeneric(typeof(SnapshotStore<>))
                 .As(typeof(ISnapshotStore<>));
+
+            builder.RegisterType<DefaultTimeService>()
+                .As<ITimeService>();
 
             return builder;
         }
