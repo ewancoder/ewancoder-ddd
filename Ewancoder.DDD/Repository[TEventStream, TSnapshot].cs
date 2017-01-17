@@ -1,6 +1,8 @@
 ﻿namespace Ewancoder.DDD
 {
     using System;
+    using System.Linq;
+    using Exceptions;
     using Interfaces;
 
     /// <summary>
@@ -79,14 +81,20 @@
         /// <returns>Event stream.</returns>
         public TEventStream GetById(Guid id)
         {
-            var lastVersion = _eventStore.EnsureStreamExistsAndGetLastVersion(id);
-
             var snapshot = _snapshotStore.GetByStreamId(id);
             var stream = Equals(snapshot, default(TSnapshot))
                 ? (TEventStream)Activator.CreateInstance(typeof(TEventStream), true)
                 : _snapshotFactory.RestoreSnapshot(snapshot);
 
-            _eventStore.ConstructStream(stream, id, lastVersion, _readPageSize);
+            if (_eventStore != null)
+            {
+                var lastVersion = _eventStore.GetLastStreamVersion(id);
+
+                if (lastVersion == -1 && Equals(snapshot, default(TSnapshot)))
+                    throw new EventStreamDoesNotExistException(id);
+
+                _eventStore.ConstructStream(stream, id, lastVersion, _readPageSize);
+            }
 
             return stream;
         }
@@ -97,15 +105,24 @@
         /// <param name="stream">Event stream.</param>
         public void Save(TEventStream stream)
         {
-            _eventStore.SaveAndDispatch(stream, _dispatcher);
-
-            var snapshot = _snapshotStore.GetByStreamId(stream.StreamId);
-
-            if ((Equals(snapshot, default(TSnapshot)) && stream.StreamVersion >= _snapshotPeriod - 1) // Stream versioning begin with 0.
-                || (!Equals(snapshot, default(TSnapshot)) && stream.StreamVersion - snapshot.Version >= _snapshotPeriod))
+            if (_eventStore != null)
             {
-                _snapshotStore.Save(_snapshotFactory.TakeSnapshot(stream));
+                _eventStore.SaveAndDispatch(stream, _dispatcher);
+
+                var snapshot = _snapshotStore.GetByStreamId(stream.StreamId);
+
+                if ((Equals(snapshot, default(TSnapshot)) && stream.StreamVersion >= _snapshotPeriod - 1) // Stream versioning begin with 0.
+                    || (!Equals(snapshot, default(TSnapshot)) && stream.StreamVersion - snapshot.Version >= _snapshotPeriod))
+                {
+                    _snapshotStore.Save(_snapshotFactory.TakeSnapshot(stream));
+                }
+
+                return;
             }
+
+            _snapshotStore.Save(_snapshotFactory.TakeSnapshot(stream));
+            _dispatcher.Dispatch(stream.GetUncommittedChanges().ToList());
+            stream.CommitChanges();
         }
     }
 }
