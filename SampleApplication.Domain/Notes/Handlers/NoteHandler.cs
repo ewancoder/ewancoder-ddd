@@ -4,8 +4,8 @@
     using Commands;
 
     internal sealed class NoteHandler
-        : ICommandHandler<CreateNote>,
-        ICommandHandler<CreateNoteWithBody>,
+        //: ICommandHandler<CreateNote>,
+        : ICommandHandler<CreateNoteWithBody>,
         ICommandHandler<ArchiveNote>,
         ICommandHandler<UpdateNoteInformation>
     {
@@ -16,7 +16,7 @@
             _repo = repo;
         }
 
-        public void Handle(CreateNote command)
+        /*public void Handle(CreateNote command)
         {
             var note = new Note(command.Id, command.Name);
 
@@ -27,6 +27,13 @@
         {
             var note = new Note(command.Id, command.Name);
             note.EditBody(command.Body);
+
+            _repo.Save(note);
+        }*/
+
+        public void Handle(CreateNoteWithBody command)
+        {
+            var note = new Note(command.Id, command.Name, command.Body);
 
             _repo.Save(note);
         }

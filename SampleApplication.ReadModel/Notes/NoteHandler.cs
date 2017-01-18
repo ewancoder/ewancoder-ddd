@@ -4,7 +4,8 @@
     using Domain.Notes.Events;
 
     internal sealed class NoteHandler
-        : IEventHandler<NoteCreated>,
+        //: IEventHandler<NoteCreated>,
+        : IEventHandler<NoteCreatedV2>,
         IEventHandler<NoteArchived>,
         IEventHandler<NoteNameChanged>,
         IEventHandler<NoteBodyChanged>
@@ -16,7 +17,17 @@
             _store = store;
         }
 
-        public void Handle(NoteCreated @event)
+        /*public void Handle(NoteCreated @event)
+        {
+            _store.Notes.Add(@event.StreamId, new Note
+            {
+                Id = @event.StreamId,
+                Name = @event.Name,
+                Body = string.Empty
+            });
+        }*/
+
+        public void Handle(NoteCreatedV2 @event)
         {
             _store.Notes.Add(@event.StreamId, new Note
             {

@@ -79,7 +79,8 @@
 
             // Sends some commands to the domain.
             {
-                var createCommand = new CreateNote(noteId, "some note name");
+                //var createCommand = new CreateNote(noteId, "some note name");
+                var createCommand = new CreateNoteWithBody(noteId, "some note name", string.Empty);
                 commandDispatcher.Dispatch(createCommand); // Creates new Note.
 
                 var updateCommand = new UpdateNoteInformation(noteId, "another note name", "note body");

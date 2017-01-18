@@ -16,9 +16,14 @@
         /// </summary>
         private Note() { }
 
-        internal Note(Guid id, string name)
+        /*internal Note(Guid id, string name)
         {
             ApplyChange(new NoteCreated(id, name));
+        }*/
+
+        internal Note(Guid id, string name, string body)
+        {
+            ApplyChange(new NoteCreatedV2(id, name, body));
         }
 
         internal void Archive()
@@ -43,17 +48,25 @@
 
         protected override void RegisterAppliers()
         {
-            RegisterApplier<NoteCreated>(Apply);
+            //RegisterApplier<NoteCreated>(Apply);
+            RegisterApplier<NoteCreatedV2>(Apply);
             RegisterApplier<NoteArchived>(Apply);
             RegisterApplier<NoteNameChanged>(Apply);
             RegisterApplier<NoteBodyChanged>(Apply);
         }
 
-        private void Apply(NoteCreated @event)
+        /*private void Apply(NoteCreated @event)
         {
             Id = @event.StreamId;
             _name = @event.Name;
             _body = string.Empty;
+        }*/
+
+        private void Apply(NoteCreatedV2 @event)
+        {
+            Id = @event.StreamId;
+            _name = @event.Name;
+            _body = @event.Body;
         }
 
         private void Apply(NoteArchived @event)
