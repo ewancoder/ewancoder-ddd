@@ -35,6 +35,8 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\EventHandlerException.cs" />
+    <Compile Include="Interfaces\ThrowExceptionInterceptor.cs" />
     <Compile Include="SyncOrderedEventDispatcher.cs" />
     <Compile Include="AsyncOrderedEventDispatcher.cs" />
     <Compile Include="EventMetadataFactory.cs" />
