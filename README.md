@@ -18,5 +18,5 @@ and data persistence (using Entity Framework as of now).
 * In future I may include here Ewancoder.Services project which represents
 service bus implementation for building microservices architecture.
 
-The project is currently maintained and updated daily, yet it may not be
-suitable for full-blown production use (although I do use it in production).
+The project is currently used in production and satisfies its goals. It will be
+maintained and updated when bugs will be found or features lacked.
