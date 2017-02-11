@@ -20,3 +20,10 @@ service bus implementation for building microservices architecture.
 
 The project is currently used in production and satisfies its goals. It will be
 maintained and updated when bugs will be found or features lacked.
+
+Currently I am working at a better imlementation of the framework, completely
+decoupled from eventual consistency and Event Sourcing. This framework will
+remain as it is, and will be refactored later to meet the needs of changing
+design. Ideally, I should have DDD framework completely decoupled from ES and
+eventual consistency, but to be able to "enable" ES/CQRS at any time just by
+enabling some kind of a "module".
